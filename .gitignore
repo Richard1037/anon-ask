@@ -3,7 +3,7 @@
 # config.json  —— 含 sessionSecret（会话签名密钥）、ipSalt（IP 哈希盐）、
 #                 管理口令哈希。泄露 sessionSecret = 别人能伪造管理员登录。
 # ngrok.json   —— 含 ngrok authtoken（账号凭据）。
-# docs/        —— 个人材料（课表、学生证、英文翻译等）。
+# docs/        —— 个人材料（课表、学生证、证件英译件等）。
 #
 # 仓库里对应的模板：config.example.json / ngrok.example.json
 config.json
