@@ -107,8 +107,8 @@ Azure 默认只放行 22。你要在 **网络 → 网络安全组 → 入站安�
 打开 PowerShell，进入项目目录：
 
 ```powershell
-cd D:\\AI\ Project\\anon-ask
-.\deploy\upload.ps1 -Server azureuser@20.1.2.3
+cd C:\path\to\anon-ask
+.\deploy\upload.ps1 -Server azureuser@203.0.113.10
 ```
 
 > 用户名是你在创建虚拟机时填的，IP 换成你自己的。
@@ -118,7 +118,7 @@ cd D:\\AI\ Project\\anon-ask
 按脚本提示 SSH 登录后执行：
 
 ```bash
-ssh azureuser@20.1.2.3
+ssh azureuser@203.0.113.10
 
 mkdir -p ~/anon-ask
 tar -xzf /tmp/anon-ask.tar.gz -C ~/anon-ask
