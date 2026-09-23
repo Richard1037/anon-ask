@@ -14,7 +14,7 @@
 set -euo pipefail
 
 DOMAIN="${1:-}"
-EMAIL="${2:-you@example.com}"
+# ⚠️ 下面这个邮箱只是 Let
 
 info() { printf '\n\033[1;34m==>\033[0m %s\n' "$*"; }
 ok()   { printf '    \033[1;32m✓\033[0m %s\n' "$*"; }

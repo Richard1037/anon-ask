@@ -10,6 +10,7 @@
 
 set -euo pipefail
 
+# ⚠️ 替换成你自己的域名
 DOMAIN="your-name.duckdns.org"
 CONF=/etc/nginx/sites-available/anon-ask
 
