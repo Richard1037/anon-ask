@@ -9,36 +9,36 @@
 
 ---
 
-## 🚀 当前部署：跑在 Azure 云服务器上（2026-09-23 起）
+## 🚀 参考部署：Azure + nginx + Let's Encrypt
 
-**网站已经不依赖你的电脑了** —— 笔记本关机、合盖、进包都不影响。
+> 📌 这是本项目实际跑通的一套部署方案。**IP / 域名 / 订阅 ID / 邮箱等已全部替换为占位符**
+> （`203.0.113.10` 是 RFC 5737 保留的文档用网段）。
+> 照着做之前先看 [`deploy/PLACEHOLDERS.md`](deploy/PLACEHOLDERS.md)，里面有需要替换的完整清单。
 
-| | 地址 |
+**目标：让网站完全不依赖本地电脑** —— 笔记本关机、合盖、进包都不影响访问。
+
+| | 示例地址 |
 |---|---|
-| **普通用户** | **https://your-name.duckdns.org** |
-| **管理后台** | **https://your-name.duckdns.org/admin** |
-| 备用（IP，无域名时） | `http://203.0.113.10:8080` |
+| **普通用户** | `https://your-name.duckdns.org` |
+| **管理后台** | `https://your-name.duckdns.org/admin` |
+| 备用（裸 IP，无域名时） | `http://203.0.113.10:8080` |
 
-> 🔒 已配 HTTPS（Let's Encrypt 免费证书，89 天有效，自动续期）。
-> `http://` 会自动 301 跳转到 `https://`。
+> 🔒 HTTPS 用 Let's Encrypt 免费证书，自动续期。`http://` 会 301 跳转到 `https://`。
 
-管理口令见 `/opt/anon-ask/config.json`（服务器上）。
-
-### 服务器信息
+### 这套配置的构成
 
 | 项 | 值 |
 |---|---|
-| 平台 | Azure for Students（$100 额度，约 $9/月，够用约 9 个月） |
-| 规格 | `Standard_B2ats_v2`（2 vCPU / 1 GiB） |
-| 区域 | Japan East |
-| 系统 | Ubuntu 24.04.4 LTS |
+| 平台 | Azure for Students（$100 额度） |
+| 规格 | `Standard_B2ats_v2`（2 vCPU / 1 GiB）—— 本项目运行时内存占用不到 100 MB |
+| 区域 | Japan East（**境外服务器不需要 ICP 备案**） |
+| 系统 | Ubuntu 24.04 LTS |
 | 代码位置 | `/opt/anon-ask` |
-| 域名 | `your-name.duckdns.org`（DuckDNS 免费，指向 203.0.113.10） |
-| 入口 | **nginx**（80 → 443 跳转；443 → 127.0.0.1:8080） |
-| 证书 | Let's Encrypt ECDSA，`/etc/letsencrypt/live/your-name.duckdns.org/` |
+| 域名 | DuckDNS 免费子域名，一条 A 记录指向服务器 IP |
+| 入口 | **nginx**：80 → 301 → 443；443 → 反向代理到 `127.0.0.1:8080` |
+| 证书 | Let's Encrypt ECDSA，`/etc/letsencrypt/live/<你的域名>/` |
 | 应用 | **systemd 服务** `anon-ask`（开机自启、崩溃自动重启） |
-| SSH 密钥 | `C:\Users\youruser\.ssh\anonask_azure`（已免密） |
-| Azure CLI | `az`（已登录，可直接管理资源） |
+| 配置 | `/opt/anon-ask/config.json`（**不入库**，见下方说明） |
 
 ### 开放的端口（NSG 入站规则）
 
