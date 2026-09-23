@@ -1,0 +1,15 @@
+{
+  "_说明": "这是 ngrok 配置模板。复制成 ngrok.json 后填入真实值；真正的 ngrok.json 不要提交到仓库。",
+
+  "_authtoken说明": "去 https://dashboard.ngrok.com/get-started/your-authtoken 复制。",
+  "authtoken": "在这里填你的 ngrok authtoken",
+
+  "_domain说明": "ngrok 免费版会自动分配一个永久静态域名，填上更明确。留空也能用。",
+  "domain": "xxxx-yyyy.ngrok-free.dev",
+
+  "_proxy说明": "必须留空！ngrok 免费版不允许 agent 走 HTTP 代理（ERR_NGROK_9009，这是付费功能）。隧道健康检查用的代理在 config.json 的 tunnelProxy 里。",
+  "proxy": "",
+
+  "_port说明": "本地网站端口，和 config.json 里的 port 保持一致。",
+  "port": 8080
+}

@@ -1,0 +1,15 @@
+{
+  "Name": "VM Self Deallocate",
+  "IsCustom": true,
+  "Description": "只允许读取虚拟机信息，以及把虚拟机停机（释放计算资源以停止计费）。不能删除、不能改配置、不能开其他机器。",
+  "Actions": [
+    "Microsoft.Compute/virtualMachines/read",
+    "Microsoft.Compute/virtualMachines/deallocate/action"
+  ],
+  "NotActions": [],
+  "DataActions": [],
+  "NotDataActions": [],
+  "AssignableScopes": [
+    "/subscriptions/00000000-0000-0000-0000-000000000000"
+  ]
+}

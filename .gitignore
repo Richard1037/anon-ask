@@ -1,0 +1,30 @@
+# ── 敏感配置：绝对不能入库 ──
+#
+# config.json  —— 含 sessionSecret（会话签名密钥）、ipSalt（IP 哈希盐）、
+#                 管理口令哈希。泄露 sessionSecret = 别人能伪造管理员登录。
+# ngrok.json   —— 含 ngrok authtoken（账号凭据）。
+# docs/        —— 个人材料（课表、学生证、英文翻译等）。
+#
+# 仓库里对应的模板：config.example.json / ngrok.example.json
+config.json
+ngrok.json
+docs/
+
+# ── 数据与运行产物 ──
+data/
+backup/
+logs/
+bin/
+test/.tmp/
+test/.shots/
+
+# ── 依赖与日志 ──
+node_modules/
+npm-debug.log*
+*.log
+
+# ── 编辑器 / 系统 ──
+.vscode/
+.idea/
+Thumbs.db
+desktop.ini

@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex, nofollow">
+<title>管理后台 · 匿名提问箱</title>
+<meta name="theme-color" content="#5a5cf0">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="/style.css">
+</head>
+<body>
+
+<!-- 登录 -->
+<div class="login-wrap" id="loginView" hidden>
+  <div class="card">
+    <div class="card__body">
+      <h1 class="hero__title">管理后台</h1>
+      <p class="hint">输入管理口令继续。口令在 config.json 里配置。</p>
+      <div class="alert alert--error" id="loginError" hidden></div>
+      <form id="loginForm">
+        <div class="field">
+          <label class="label" for="password">管理口令</label>
+          <input class="input" id="password" type="password" autocomplete="current-password" required>
+        </div>
+        <div class="btn-row">
+          <button class="btn btn--primary btn--block" id="loginBtn" type="submit">登录</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+<!-- 面板 -->
+<main class="page page--wide" id="panelView" hidden>
+
+  <header class="hero">
+    <span class="hero__eyebrow">只有你能看到</span>
+    <h1 class="hero__title">提问管理</h1>
+    <p class="hero__desc" id="adminDesc"></p>
+  </header>
+
+  <div class="stats" id="stats"></div>
+
+  <div class="toolbar">
+    <div class="chips" id="filters">
+      <button class="chip" type="button" data-filter="unanswered" aria-pressed="true">待回答</button>
+      <button class="chip" type="button" data-filter="published" aria-pressed="false">已公开</button>
+      <button class="chip" type="button" data-filter="private" aria-pressed="false">仅提问者可见</button>
+      <button class="chip" type="button" data-filter="hidden" aria-pressed="false">已隐藏</button>
+      <button class="chip" type="button" data-filter="all" aria-pressed="false">全部</button>
+    </div>
+    <div class="spacer"></div>
+    <button class="btn btn--sm" id="refreshBtn" type="button">刷新</button>
+    <button class="btn btn--sm btn--ghost" id="logoutBtn" type="button">退出登录</button>
+  </div>
+
+  <div class="field">
+    <input class="input" id="search" type="search" placeholder="搜索问题、回答、昵称或标签…" autocomplete="off">
+  </div>
+
+  <div class="alert alert--error" id="panelError" hidden></div>
+
+  <div class="wall" id="list"></div>
+  <div class="empty" id="listEmpty" hidden>这里还没有内容。</div>
+  <div class="btn-row">
+    <button class="btn btn--ghost btn--block" id="loadMore" type="button" hidden>加载更多</button>
+  </div>
+
+  <footer class="footer">
+    <p><a href="/" target="_blank" rel="noopener">查看提问墙</a></p>
+  </footer>
+
+</main>
+
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+<script src="/admin.js" defer></script>
+</body>
+</html>

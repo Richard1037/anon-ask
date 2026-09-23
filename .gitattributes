@@ -1,0 +1,42 @@
+# 行尾规范 —— 这个文件很重要，别删
+#
+# 背景：Git for Windows 默认会把文本文件的行尾在提交/检出时转成 CRLF。
+# 对 .bat / .vbs 来说 CRLF 是必须的（LF 会让 cmd 读批处理时错位）；
+# 但对 shell 脚本和 Node 脚本来说，CRLF 里的 \r 会导致 Linux 上执行失败
+# （典型报错：/bin/bash^M: bad interpreter）。
+#
+# 所以显式规定每类文件的行尾，不依赖各人本地的 core.autocrlf 设置。
+
+# 默认：自动判断文本/二进制，文本正常归一化为 LF 存储
+* text=auto
+
+# Linux / Node 侧 —— 必须 LF
+*.sh      text eol=lf
+*.mjs     text eol=lf
+*.js      text eol=lf
+*.json    text eol=lf
+*.html    text eol=lf
+*.css     text eol=lf
+*.svg     text eol=lf
+*.conf    text eol=lf
+*.md      text eol=lf
+.gitignore text eol=lf
+.gitattributes text eol=lf
+
+# Windows 侧 —— 必须 CRLF
+*.bat     text eol=crlf
+*.cmd     text eol=crlf
+*.vbs     text eol=crlf
+*.ps1     text eol=crlf
+
+# 二进制，别碰
+*.png     binary
+*.jpg     binary
+*.jpeg    binary
+*.gif     binary
+*.webp    binary
+*.ico     binary
+*.exe     binary
+*.db      binary
+*.zip     binary
+*.gz      binary

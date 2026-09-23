@@ -1,0 +1,40 @@
+{
+  "_说明": "这是配置模板。复制成 config.json 后按需修改；真正的 config.json 不要提交到仓库。",
+
+  "siteName": "匿名提问箱",
+  "siteDesc": "有什么想问的，匿名写下来吧。我看到后可以公开回答，也可以只回答你一个人。",
+  "ownerName": "站长",
+
+  "port": 8080,
+  "host": "0.0.0.0",
+
+  "_trustProxy说明": "前面有反向代理（nginx / 隧道）时设为 true，否则限流会把所有访客当成代理的 IP。服务端只信任来自回环地址的转发头。",
+  "trustProxy": false,
+
+  "_tunnelProxy说明": "隧道守护进程做健康检查时用的代理地址，留空则直连。",
+  "tunnelProxy": "",
+
+  "sessionDays": 7,
+
+  "maxQuestionLength": 800,
+  "maxFollowupLength": 500,
+  "maxAnswerLength": 4000,
+  "maxNicknameLength": 20,
+  "maxTagLength": 12,
+
+  "rateLimit": {
+    "submitPerMinute": 3,
+    "submitPerDay": 50,
+    "loginPerTenMinutes": 5,
+    "followupPerMinute": 5,
+    "followupPerDay": 30
+  },
+
+  "_口令说明": "填明文即可，启动后会自动转成 scrypt 哈希并回写，明文那一行会被删掉。留空则自动生成随机口令。",
+  "adminPassword": "换成你自己的口令",
+  "adminPasswordHash": null,
+
+  "_密钥说明": "下面三项首次启动自动生成，不要手动改 —— 改了会话会全部失效、历史 IP 哈希也会对不上。",
+  "sessionSecret": null,
+  "ipSalt": null
+}
