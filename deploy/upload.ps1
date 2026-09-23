@@ -1,4 +1,4 @@
-﻿<#
+<#
 .SYNOPSIS
   把匿名提问箱打包并上传到服务器。
 
@@ -51,7 +51,15 @@ foreach ($cmd in 'tar', 'scp') {
 Write-Host '  正在打包…' -ForegroundColor Yellow
 New-Item -ItemType Directory -Force -Path $stageDir | Out-Null
 
-$exclude = @('data', 'logs', 'backup', 'bin', '.git', '_tmp', 'docs', '.askpass.cmd', '.tmp-askpass.cmd')
+# 注意：config.json 是**故意保留**的 —— 服务器需要它才能用同一个管理口令。
+# 但 ngrok.json 含账号 authtoken，而服务器根本不需要跑隧道，所以排除掉，
+# 避免把密钥多复制一份到别处。
+$exclude = @(
+  'data', 'logs', 'backup', 'bin',
+  '.git', '.gitignore', '.gitattributes',
+  'docs', 'ngrok.json',
+  '_tmp', '.askpass.cmd', '.tmp-askpass.cmd'
+)
 Get-ChildItem -Path $projectDir -Force | Where-Object { $exclude -notcontains $_.Name } | ForEach-Object {
   Copy-Item $_.FullName -Destination $stageDir -Recurse -Force
 }
